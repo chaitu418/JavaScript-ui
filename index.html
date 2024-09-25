@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaitanya Automations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      margin: 20px 0;
+      display: inline-block;
+      text-align: left;
+      width: 300px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      padding: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .form-toggle {
+      margin-top: 20px;
+    }
+    .form-toggle button {
+      background-color: #007bff;
+    }
+    .form-toggle button:hover {
+      background-color: #0069d9;
+    }
+    .form-result {
+      margin-top: 20px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Chaitanya Automations</h1>
+
+  <!-- Login Form (default visible) -->
+  <form id="loginForm" onsubmit="handleLogin(event)">
+    <label for="loginEmail">Email:</label>
+    <input type="email" id="loginEmail" name="email" required>
+
+    <label for="loginPassword">Password:</label>
+    <input type="password" id="loginPassword" name="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <!-- Register Form (hidden by default) -->
+  <form id="registerForm" onsubmit="handleRegister(event)" style="display: none;">
+    <label for="registerName">Name:</label>
+    <input type="text" id="registerName" name="name" required>
+
+    <label for="registerEmail">Email:</label>
+    <input type="email" id="registerEmail" name="email" required>
+
+    <label for="registerPassword">Password:</label>
+    <input type="password" id="registerPassword" name="password" required>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <!-- Toggle between Login and Register -->
+  <div class="form-toggle">
+    <button onclick="toggleForms()">Switch to Register</button>
+  </div>
+
+  <!-- Div to display form results -->
+  <div class="form-result" id="formResult"></div>
+
+  <script>
+    // Function to toggle between login and register forms
+    function toggleForms() {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const toggleButton = document.querySelector('.form-toggle button');
+
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        toggleButton.textContent = 'Switch to Register';
+      } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        toggleButton.textContent = 'Switch to Login';
+      }
+    }
+
+    // Function to handle login form submission
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      document.getElementById('formResult').innerText = `Logged in successfully with email: ${email}`;
+    }
+
+    // Function to handle register form submission
+    function handleRegister(event) {
+      event.preventDefault();
+      const name = document.getElementById('registerName').value;
+      const email = document.getElementById('registerEmail').value;
+      document.getElementById('formResult').innerText = `Registered successfully! Welcome, ${name} (${email}).`;
+    }
+  </script>
+</body>
+</html>
